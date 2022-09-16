@@ -4,17 +4,38 @@ sidebar_position: 1
 
 # Zsync API Specifications
 
+
+This document is a sample, it only covers a single endpoint of Zksync's API V2.
+
+| Endpoint                                             | Description                                                                        |
+|------------------------------------------------------|------------------------------------------------------------------------------------|
+| `/users/transactions?module=account&address={address}` | Returns the list of transactions performed by an address, with optional pagination |
+
+
 ## Transactions
+
 
 Transactions: the transaction object represents a transaction included in a block. 
 
-`/users/transactions?module=account&address={address}`: returns the list of transactions performed by an address, with optional pagination.
 
 host: api.zsync.io,
 basePath": /api/v2,
 
 type of request: GET
 
+### Example URI
+
+```
+https://api.zksync.io/v2/users/transactions\?module\=account\&address\=0xc679HDJH9HHJI098a3CC98sjskjjks\&startblock\=0\&endblock\=100000\&page\=1\&offset\=5\&sort\=desc'
+ ```
+
+### Path Parameter
+
+| Path parameter | Description                                                       |
+|----------------|-------------------------------------------------------------------|
+| {address}      | Represents the account address from which to retrieve transaction |
+
+### URI Parameters
 
 | Query string Parameter  | Data type | Description                                                                              |
 |------------|-----------|------------------------------------------------------------------------------------------|
@@ -22,8 +43,18 @@ type of request: GET
 | endblock   | Integer   | The integer block number stops searching for transactions.                               |
 | address    | String    | The string represents the addresses to check for the balance.                            |
 | offset     | Integer   | The number of transactions displayed per page.                                           |
-| sort       | String    | For the sorting preference, use asc to sort by ascending and desc to sort by descending. |
+| sort       | String    | For the sorting preference, use `asc` to sort by ascending and `desc` to sort by descending. |
 | page       | Integer   | The integer page number if pagination is enabled.                                        |
+
+### Responses
+
+| Response code               | Description                                                                                   |
+|-----------------------------|-----------------------------------------------------------------------------------------------|
+| 200 OK                    | The request has succeeded.                                                                    |
+| 400 Bad Request           | The request unsuccessful due to incorrect syntax.                    |
+| 404 Not Found             | The server could not find the requested resource.                                              |
+| 500 Internal Server Error | The server encountered an unexpected condition that prevented it from fulfilling the request. |
+| 503 Service Unavailable   | The server is not ready to handle the request.                                                |
 
 
 ``

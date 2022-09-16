@@ -77,7 +77,7 @@ const config = {
         title: 'Zksync documentation',
         logo: {
           alt: 'Zksync documentation Logo',
-          src: 'img/logo.svg',
+          src: 'img/logo.png',
         },
         items: [
           // {

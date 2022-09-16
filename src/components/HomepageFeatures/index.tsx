@@ -24,7 +24,7 @@ const FeatureList: FeatureItem[] = [
         description: (
             <>Structured view of API endpoints </>
         ),
-        url: '/docs/zksync-api-reference'
+        url: '/api'
     },
     {
         title: 'Documentation improvement strategy',
@@ -39,7 +39,7 @@ const FeatureList: FeatureItem[] = [
     },
 ];
 
-function Feature({ title, Svg, description, url }: FeatureItem) {
+function Feature({ title, url }: FeatureItem) {
     return (
         <div className={clsx('col col--4')}>
             <div className="text--center padding-horiz--md">

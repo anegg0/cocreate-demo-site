@@ -15,12 +15,6 @@ basePath": /api/v2,
 
 type of request: GET
 
-```curl
-curl -XGET -H 'module: account' -H 'address: address_value' -H 'startblock: 0' -H 'endblock: 100000' -H 'page: 1' -H 'offset: 5' -H 'sort: desc' -H "Content-type: application/json" 'https://api.zksync.io/api/v2/users/transactions/'
-```
-
-https://goerli-api.zksync.io/api/v0.1/blocks\?max_block\=1000\&limit\=2
-
 
 | Query string Parameter  | Data type | Description                                                                              |
 |------------|-----------|------------------------------------------------------------------------------------------|
@@ -32,11 +26,65 @@ https://goerli-api.zksync.io/api/v0.1/blocks\?max_block\=1000\&limit\=2
 | page       | Integer   | The integer page number if pagination is enabled.                                        |
 
 
-/blocks?max_block={number?}&limit={number?}: Returns the block headers.
+``
+## Examples
 
+```md codetabs
 
+```bash label="Curl query"
+curl -XGET -H 'module: account' -H 'address: 0xc679HDJH9HHJI098a3CC98sjskjjks -H 'startblock: 0' -H 'endblock: 100000' -H 'page: 1' -H 'offset: 5' -H 'sort: desc' -H "Content-type: application/json" 'https://api.zksync.io/api/v2/users/transactions/' | json_pp 
 
-`GET /v2/users/transactions?module=account&address=0xc679HDJH9HHJI098a3CC98sjskjjks&startblock=0&endblock=100000&page=1&offset=5&sort=desc`
+```js label="JS Fetch Query"
 
+async function getData(url = '') {
+  await fetch(url, {
+    method: 'GET',
+    mode: 'cors',
+    cache: 'no-cache',
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+}
 
+getData('https://api.zksync.io/v2/users/transactions\?module\=account\&address\=0xc679HDJH9HHJI098a3CC98sjskjjks\&startblock\=0\&endblock\=100000\&page\=1\&offset\=5\&sort\=desc');
 
+```json label='Json response'
+[
+{
+  "tx_hash": "1424388a45de738bae3175734bfdd8bb36abc8c31b2608018172574e8b7e38e2",
+  "block_number": 3072,
+  "success": true,
+  "verified": true,
+  "fail_reason": null,
+  "prover_run": {
+    "id": 3091,
+    "block_number": 3072,
+    "worker": "prover-76ccd5db5d-d959v",
+    "created_at": "2020-11-11T04:18:40.950155Z",
+    "updated_at": "2020-11-11T04:19:33.761931Z"
+  }
+},
+{
+  "tx_hash": "e8b239b55804e58c2a55e2b567a9572811c19230d6a0d1f4a7840e7a0952b33d",
+  "block_number": 2817,
+  "success": true,
+  "verified": true,
+  "fail_reason": null,
+  "prover_run": {
+    "id": 2834,
+    "block_number": 2817,
+    "worker": "prover-76ccd5db5d",
+    "created_at": "2020-11-03T15:25:14.814835Z",
+    "updated_at": "2020-11-03T15:26:59.617458Z"
+  }
+}
+]
+
+    ```

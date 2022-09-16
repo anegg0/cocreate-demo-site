@@ -2,46 +2,41 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Zsync API Specifications
 
-Let's discover **Docusaurus in less than 5 minutes**.
+## Transactions
 
-## Getting Started
+Transactions: the transaction object represents a transaction included in a block. 
 
-Get started by **creating a new site**.
+`/users/transactions?module=account&address={address}`: returns the list of transactions performed by an address, with optional pagination.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+host: api.zsync.io,
+basePath": /api/v2,
 
-### What you'll need
+type of request: GET
 
-- [Node.js](https://nodejs.org/en/download/) version 16.14 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
-
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
+```curl
+curl -XGET -H 'module: account' -H 'address: address_value' -H 'startblock: 0' -H 'endblock: 100000' -H 'page: 1' -H 'offset: 5' -H 'sort: desc' -H "Content-type: application/json" 'https://api.zksync.io/api/v2/users/transactions/'
 ```
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+https://goerli-api.zksync.io/api/v0.1/blocks\?max_block\=1000\&limit\=2
 
-The command also installs all necessary dependencies you need to run Docusaurus.
 
-## Start your site
+| Query string Parameter  | Data type | Description                                                                              |
+|------------|-----------|------------------------------------------------------------------------------------------|
+| startblock | Integer   | The integer block number to start                                                        |
+| endblock   | Integer   | The integer block number stops searching for transactions.                               |
+| address    | String    | The string represents the addresses to check for the balance.                            |
+| offset     | Integer   | The number of transactions displayed per page.                                           |
+| sort       | String    | For the sorting preference, use asc to sort by ascending and desc to sort by descending. |
+| page       | Integer   | The integer page number if pagination is enabled.                                        |
 
-Run the development server:
 
-```bash
-cd my-website
-npm run start
-```
+/blocks?max_block={number?}&limit={number?}: Returns the block headers.
 
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
 
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
 
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+`GET /v2/users/transactions?module=account&address=0xc679HDJH9HHJI098a3CC98sjskjjks&startblock=0&endblock=100000&page=1&offset=5&sort=desc`
+
+
+

@@ -24,3 +24,32 @@
   --ifm-color-primary-lighter: #ebedf0;
   --ifm-color-primary-lightest: #ffffff;
 }
+
+./* Edit the `src/css/custom.css` file and add the following styles */
+
+/*
+ * Reset the line-number counter for each .prism-code scope
+ */
+.prism-code {
+  counter-reset: line-number;
+}
+
+/*
+ * Notice the chained .language-ts class name to .prism-code
+ * You can chain more languages in order to add line numbers
+ */
+.prism-code {
+  counter-reset: line-number;
+}
+
+.prism-code .token-line::marker {
+  color: var(--ifm-color-gray-700);
+  content: counter(line-number);
+}
+
+.prism-code .token-line {
+  counter-increment: line-number;
+  display: list-item;
+  padding-left: var(--ifm-pre-padding);
+  margin-left: var(--ifm-global-spacing);
+}

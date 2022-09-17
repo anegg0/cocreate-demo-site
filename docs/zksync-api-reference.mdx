@@ -4,23 +4,11 @@ sidebar_position: 1
 
 # Zsync API Reference
 
-
 This document is a sample, it only covers a single endpoint of Zksync's API V2.
-
-
 
 ## Transactions listing
 
-| Endpoint     |Request type | Description    |
-|--------------|------------|----|
-| `/users/transactions?module=account&address={address}` |`GET`| Returns the list of transactions performed by <br/> an address, with optional pagination |
-
-| Host     | Base Path    |
-|--------------|----------------|
-| `api.zsync.io` | `/api/v2`   |
-
 This endpoint enables  a common use-case: looking up transactions sent by a given address. 
-
 The path parameter`{address}` allows you to submit any address as a `string` and get all transactions sent by this address. 
 
 If you only need a subset of these transactions, the endpoint exposes the `startblock` and `endblock` parameters, which represent the period when transactions should be included.
@@ -28,20 +16,24 @@ If you only need a subset of these transactions, the endpoint exposes the `start
 i.e.: `startblock=30` and `endblock=60` will only return transactions sent by an address between block 30 and block 60.
 
 You can optically control the output by setting the number of transactions displayed per page with  the `offset` param, sort the transactions by ascending and descending order (`asc` and `desc` parameters) and decide what page should be displayed with the `page` param. 
+ 
+### Base path
 
+| Host     | Base Path    |
+|--------------|----------------|
+| `https://api.zsync.io` | `/api/v2`   |
 
+### Endpoint
+| Endpoint     |Request type | Description    |
+|--------------|------------|----|
+| `/users/transactions?module=account&address={address}` |`GET`| Returns the list of transactions performed by <br/> an address, with optional pagination |
 
-### Example URI
-
-```
-https://api.zksync.io/v2/users/transactions\?module\=account\&address\=0xc679HDJH9HHJI098a3CC98sjskjjks\&startblock\=0\&endblock\=100000\&page\=1\&offset\=5\&sort\=desc'
- ```
 
 ### Path Parameter
 
 | Path parameter | Description                                                       |
-|----------------|-------------------------------------------------------------------|
-| {address}      | Represents the account address from which to retrieve transaction |
+|----------------|------------------------------------------|
+| {address}      | Account address to get transactions from |
 
 ### Request type
 
@@ -68,9 +60,15 @@ This endpoint accepts `GET` requests.
 | 500 Internal Server Error | The server encountered an unexpected condition that prevented it from fulfilling the request. |
 | 503 Service Unavailable   | The server is not ready to handle the request.                                                |
 
-
-``
 ## Examples
+
+### Example URI
+
+```bash
+https://api.zksync.io/v2/users/transactions\?module\=account\&address\=0xc679HDJH9HHJI098a3CC98sjskjjks\&startblock\=0\&endblock\=100000\&page\=1\&offset\=5\&sort\=desc'
+ ```
+ 
+### Example Requests
 
 ```md codetabs
 
@@ -84,7 +82,7 @@ curl -XGET
 -H 'offset: 5' 
 -H 'sort: desc' 
 -H "Content-type: application/json" 
-'https://api.zksync.io/api/v2/users/transactions/' | json_pp 
+'https://api.zksync.io/v2/users/transactions/' | json_pp 
 
 ```js label="Example JS Fetch request"
 

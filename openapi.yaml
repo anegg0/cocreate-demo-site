@@ -9,12 +9,10 @@ info:
 
     This is a sample API definition of Zksync's V2 API
 
-    # Authentication
+    ### Authentication
 
     The authentication scheme is undefined at this time.
     This document is a sample, it only covers a single endpoint of Zksync's API V2.
-
-    ## Transactions listing
 
     ### Base path
 
@@ -34,20 +32,16 @@ info:
     |----------------|------------------------------------------|
     | {address}      | Account address to get transactions from |
 
-    ### Request type
-
-    This endpoint accepts `GET` requests.
-
     ### URI Parameters
 
     | Query string Parameter  | Data type | Description                                                                              |
     |------------|-----------|------------------------------------------------------------------------------------------|
-    | address    | String    | The string represents the addresses to check for the balance.                            |
+    | address    | String    | The string represents the addresses to check for the balance                            |
     | startblock | Integer   | The integer block number to start                                                        |
-    | endblock   | Integer   | The integer block number stops searching for transactions.                               |
-    | offset     | Integer   | The number of transactions displayed per page.                                           |
-    | sort       | String    | Sorts transactions by ascending ( use `asc`) or descending order ( use `desc`). |
-    | page       | Integer   | The integer page number if pagination is enabled.                                        |
+    | endblock   | Integer   | The integer block number stops searching for transactions                               |
+    | offset     | Integer   | The number of transactions displayed per page                                           |
+    | sort       | String    | Sorts transactions by ascending ( use `asc`) or descending order ( use `desc`) |
+    | page       | Integer   | The integer page number if pagination is enabled                                        |
 
     ### Responses
 
@@ -66,10 +60,9 @@ info:
   license:
     name: MIT
 tags:
-  - name: transaction
+  - name: '/users/transactions?module=account&address={address}'
     description: |
-    This endpoint enables  a common use-case: looking up transactions sent by a given address. The path take `{address}` as a `string` parameter   and returns transactions sent by this address. If you only need a subset of these transactions, the endpoint exposes the `startblock` and `endblock` parameters, which represent the period when transactions should be included. i.e. `startblock=30` and `endblock=60` will only return transactions sent by an address between block 30 and block 60. You can optically control the output by setting the number of transactions displayed per page with  the `offset` param, sort the transactions by ascending and descending order (`asc` and `desc` parameters) and decide what page should be displayed with the `page` param.
-
+      This endpoint enables  a common use-case: looking up transactions sent by a given address. The path take `{address}` as a `string` parameter   and returns transactions sent by this address. If you only need a subset of these transactions, the endpoint exposes the `startblock` and `endblock` parameters, which represent the period when transactions should be included. i.e. `startblock=30` and `endblock=60` will only return transactions sent by an address between block 30 and block 60. You can optically control the output by setting the number of transactions displayed per page with  the `offset` param, sort the transactions by ascending and descending order (`asc` and `desc` parameters) and decide what page should be displayed with the `page` param.
   - name: transaction_model
     x-displayName: The transaction Model
     description: |
@@ -77,15 +70,12 @@ tags:
 x-tagGroups:
   - name: Transaction management
     tags:
-      - transaction
+      - getTransactionsByAddress
   - name: Models
     tags:
       - transaction_model
 paths:
-  # /users/transactions?module=account:
-  # /transactions:
-
-  /users/transactions?module=account&address={address}:
+  /users/transactions:
     parameters:
       - name: Accept-Language
         in: header
@@ -95,13 +85,48 @@ paths:
         schema:
           type: string
           default: en-AU
-  # `/users/transactions?module=account&address={address}`:
+  '/users/transactions?module=account&address={address}':
     get:
       tags:
-        - transaction
-      summary: Find transactions by address
-      description: Returns a list of transactions sent by a given address
-      operationId: getTransactionsById
+        - getTransactionsByAddress
+      summary: |
+        Returns the list of transactions performed by a given address.
+      description: |
+        This endpoint enables  a common use-case: looking up transactions sent by a given address.
+
+        The path take `{address}` as a `string` parameter   and returns transactions sent by this address.
+
+        If you only need a subset of these transactions, the endpoint exposes the `startblock` and `endblock` parameters, which represent the period when transactions should be included. i.e. `startblock=30` and `endblock=60` will only return transactions sent by an address between block 30 and block 60.
+
+        You can optically control the output by setting the number of transactions displayed per page with  the `offset` param, sort the transactions by ascending and descending order (`asc` and `desc` parameters) and decide what page should be displayed with the `page` param.
+
+        Find transactions by address
+
+        ### Request type
+
+        This endpoint accepts `GET` requests.
+
+        ### URI Parameters
+
+        | Query string Parameter  | Data type | Description                                                                              |
+        |------------|-----------|------------------------------------------------------------------------------------------|
+        | address    | String    | The string represents the addresses to check for transactions.                            |
+        | startblock | Integer   | The integer block number to start                                                        |
+        | endblock   | Integer   | The integer block number stops searching for transactions.                               |
+        | offset     | Integer   | The number of transactions displayed per page.                                           |
+        | sort       | String    | Sorts transactions by ascending ( use `asc`) or descending order ( use `desc`). |
+        | page       | Integer   | The integer page number if pagination is enabled.                                        |
+
+        ### Responses
+
+        | Response code               | Description                                                                                   |
+        |-----------------------------|-----------------------------------------------------------------------------------------------|
+        | 200 OK                    | The request has succeeded.                                                                    |
+        | 400 Bad Request           | Invalid transaction supplied.                    |
+        | 404 Not Found             | transaction(s) not found.                                              |
+        | 500 Internal Server Error | The server encountered an unexpected condition that prevented it from fulfilling the request. |
+        | 503 Service Unavailable   | The server is not ready to handle the request.                                                |
+      operationId: getTransactionsByAddress
       parameters:
         - name: Content-type
           in: header
@@ -192,7 +217,7 @@ paths:
 
               getData('https://api.zksync.io/v2/users/transactions\?module\=account\&address\=0xc679HDJH9HHJI098a3CC98sjskjjks\&startblock\=0\&endblock\=100000\&page\=1\&offset\=5\&sort\=desc');
       responses:
-        '200':
+        '200 OK succeeded':
           description: successful operation
           content:
             application/json:
@@ -201,10 +226,15 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Transaction'
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: transaction not found
+        '400 Bad Request':
+          description: Invalid transaction supplied
+        '404 Not Found':
+          description: Transaction not found
+        '500 Internal Server Error':
+          description: The server encountered an unexpected condition that prevented it from fulfilling the request
+        '503 Service Unavailable':
+          description: The server is not ready to handle the request
+
 components:
   schemas:
     ApiResponse:

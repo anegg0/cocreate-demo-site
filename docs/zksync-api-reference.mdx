@@ -9,7 +9,7 @@ This document is a sample, it only covers a single endpoint of Zksync's API V2.
 ## Transactions listing
 
 This endpoint enables  a common use-case: looking up transactions sent by a given address. 
-The path parameter`{address}` allows you to submit any address as a `string` and get all transactions sent by this address. 
+The path take `{address}` as a `string` parameter   and returns transactions sent by this address. 
 
 If you only need a subset of these transactions, the endpoint exposes the `startblock` and `endblock` parameters, which represent the period when transactions should be included.
 
@@ -21,12 +21,12 @@ You can optically control the output by setting the number of transactions displ
 
 | Host     | Base Path    |
 |--------------|----------------|
-| `https://api.zsync.io` | `/api/v2`   |
+| `${ZKSYNC_SERVER_ADDRESS}/` | `/api/v2`   |
 
 ### Endpoint
-| Endpoint     |Request type | Description    |
-|--------------|------------|----|
-| `/users/transactions?module=account&address={address}` |`GET`| Returns the list of transactions performed by <br/> an address, with optional pagination |
+| Endpoint   | Description    |
+|-------------------|----|
+| `/users/transactions?module=account&address={address}` |Returns the list of transactions performed by <br/> an address, with optional pagination |
 
 
 ### Path Parameter
@@ -43,11 +43,11 @@ This endpoint accepts `GET` requests.
 
 | Query string Parameter  | Data type | Description                                                                              |
 |------------|-----------|------------------------------------------------------------------------------------------|
+| address    | String    | The string represents the addresses to check for the balance.                            |
 | startblock | Integer   | The integer block number to start                                                        |
 | endblock   | Integer   | The integer block number stops searching for transactions.                               |
-| address    | String    | The string represents the addresses to check for the balance.                            |
 | offset     | Integer   | The number of transactions displayed per page.                                           |
-| sort       | String    | For the sorting preference, use `asc` to sort by ascending and `desc` to sort by descending. |
+| sort       | String    | Sorts transactions by ascending ( use `asc`) or descending order ( use `desc`). |
 | page       | Integer   | The integer page number if pagination is enabled.                                        |
 
 ### Responses
@@ -69,6 +69,9 @@ https://api.zksync.io/v2/users/transactions\?module\=account\&address\=0xc679HDJ
  ```
  
 ### Example Requests
+
+Any REST API-compliant package can be used to perform HTTP requests against Zksync's API V2, here are a couple query examples using `cURL` and `Javascript Fetch:  
+
 
 ```md codetabs
 

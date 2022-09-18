@@ -11,14 +11,6 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
     {
-        title: 'API Reference',
-        Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
-        description: (
-            <>Transaction endpoint reference</>
-        ),
-        url: '/docs/zksync-api-reference'
-    },
-    {
         title: 'API Definition',
         Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
         description: (

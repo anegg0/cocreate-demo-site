@@ -70,12 +70,6 @@ const config = {
           src: 'img/logo.png',
         },
         items: [
-          {
-            type: 'doc',
-            docId: 'zksync-api-reference',
-            position: 'left',
-            label: 'API Reference',
-          },
           { to: '/api', label: 'API Definition', position: 'left' },
           {
             type: 'doc',
@@ -91,10 +85,6 @@ const config = {
           {
             title: 'Docs',
             items: [
-              {
-                label: 'API Reference',
-                to: '/docs/zksync-api-reference',
-              },
               {
                 label: 'Zksync Improvement Strategy',
                 to: '/docs/zksync-api-docs-improvement-strategy',

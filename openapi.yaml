@@ -1,0 +1,403 @@
+openapi: 3.0.0
+servers:
+  - url: //${ZKSYNC_SERVER_ADDRESS}/v2
+    description: Default server
+info:
+  description: |
+    # Introduction
+    This is a sample API definition of Zksync's V2 API
+    # Authentication
+    The authentication scheme is undefined at this time.
+  version: 1.0.0
+  title: "Zksync API v2"
+  contact:
+    name: Zsync Support
+  x-logo:
+    url: 'https://redocly.github.io/redoc/petstore-logo.png'
+    altText: transactionstore logo
+  license:
+    name: MIT
+tags:
+  - name: transaction
+    description: Everything about your transactions
+  - name: transaction_model
+    x-displayName: The transaction Model
+    description: |
+      <SchemaDefinition schemaRef="#/components/schemas/Transaction" />
+  - name: store_model
+    x-displayName: The Order Model
+    description: |
+      <SchemaDefinition schemaRef="#/components/schemas/Order" exampleRef="#/components/examples/Order" showReadOnly={true} showWriteOnly={true} />
+x-tagGroups:
+  - name: Transaction management
+    tags:
+      - transaction
+      - store
+  - name: Models
+    tags:
+      - transaction_model
+      - store_model
+paths:
+  /transactions:
+    parameters:
+      - name: Accept-Language
+        in: header
+        description: "The language you prefer for messages. Supported values are en-AU, en-CA, en-GB, en-US"
+        example: en-US
+        required: false
+        schema:
+          type: string
+          default: en-AU
+  '/users/transactions?module=account&address={address}':
+    get:
+      tags:
+        - transaction
+      summary: Find transactions by address
+      description: Returns a list of transactions sent by a given address
+      operationId: getTransactionsById
+      parameters:
+        - name: address
+          in: path
+          description: Address of transaction to return
+          required: true
+          deprecated: false
+          schema:
+            type: string
+        - name: startblock
+          in: path
+          description: Block from which to start returning transactions
+          required: false
+          deprecated: false
+          schema:
+            type: integer
+            format: int64
+        - name: endblock
+          in: path
+          description: Block from which to stop returning transactions
+          required: false
+          deprecated: false
+          schema:
+            type: integer
+            format: int64
+        - name: offset
+          in: path
+          description: Number of transactions displayed per page
+          required: false
+          deprecated: false
+          schema:
+            type: integer
+            format: int64
+        - name: sort
+          in: path
+          description: Sorting preference, use `asc` to sort by ascending order and `desc` to sort by descending.
+          required: false
+          deprecated: false
+          schema:
+            type: string
+        - name: page
+          in: path
+          description: The integer page number if pagination is enabled.
+          required: false
+          deprecated: false
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: transaction not found
+components:
+  schemas:
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+    Cat:
+      description: A representation of a cat
+      allOf:
+        - $ref: '#/components/schemas/Transaction'
+        - type: object
+          properties:
+            huntingSkill:
+              type: string
+              description: The measured skill for hunting
+              default: lazy
+              example: adventurous
+              enum:
+                - clueless
+                - lazy
+                - adventurous
+                - aggressive
+          required:
+            - huntingSkill
+    Category:
+      type: object
+      properties:
+        id:
+          description: Category ID
+          allOf:
+            - $ref: '#/components/schemas/Id'
+        name:
+          description: Category name
+          type: string
+          minLength: 1
+        sub:
+          description: Test Sub Category
+          type: object
+          properties:
+            prop1:
+              type: string
+              description: Dumb Property
+      xml:
+        name: Category
+    Dog:
+      description: A representation of a dog
+      allOf:
+        - $ref: '#/components/schemas/Transaction'
+        - type: object
+          properties:
+            packSize:
+              type: integer
+              format: int32
+              description: The size of the pack the dog is from
+              default: 1
+              minimum: 1
+          required:
+            - packSize
+    HoneyBee:
+      description: A representation of a honey bee
+      allOf:
+        - $ref: '#/components/schemas/Transaction'
+        - type: object
+          properties:
+            honeyPerDay:
+              type: number
+              description: Average amount of honey produced per day in ounces
+              example: 3.14
+              multipleOf: .01
+          required:
+            - honeyPerDay
+    Id:
+      type: integer
+      format: int64
+      readOnly: true
+    Hash:
+      type: string
+      readOnly: true
+      example: 1424388a45de738bae3175734bfdd8bb36abc8c31b2608018172574e8b7e38e2
+    prover_run:
+      type: object
+      description: Low-level details on proving job for the block containing the transaction
+      properties:
+        id:
+          type: integer
+        block_number:
+          description: Block where transaction belongs
+          type: integer
+          format: int64
+          example: 3072
+        worker:
+          description:
+          type: string
+          example: prover-76ccd5db5d-d959v
+        created_at:
+          description: Date of proof creation
+          type: string
+          format: date-time
+        updated_at:
+          description: Date of proof update
+          type: string
+          format: date-time
+    Address:
+      type: string
+      readOnly: true
+    Order:
+      type: object
+      properties:
+        id:
+          description: Order ID
+          allOf:
+            - $ref: '#/components/schemas/Id'
+        transactionId:
+          description: Transaction ID
+          allOf:
+            - $ref: '#/components/schemas/Id'
+        quantity:
+          type: integer
+          format: int32
+          minimum: 1
+          default: 1
+        shipDate:
+          description: Estimated ship date
+          type: string
+          format: date-time
+        status:
+          type: string
+          description: Order Status
+          enum:
+            - placed
+            - approved
+            - delivered
+        complete:
+          description: Indicates whenever order was completed or not
+          type: boolean
+          default: false
+          readOnly: true
+        requestId:
+          description: Unique Request Id
+          type: string
+          writeOnly: true
+      xml:
+        name: Order
+    Transaction:
+      type: object
+      properties:
+        tx_hash:
+          description: Hexadecimal string representation of transaction hash
+          allOf:
+            - $ref: '#/components/schemas/Hash'
+        block_number:
+          description: Block where transaction belongs
+          type: integer
+          example: 3072
+        success:
+          description: Indicates if the execution was successful
+          type: boolean
+          example: true
+        verified:
+          description: Whether block with this transaction was already verified
+          type: boolean
+          example: true
+        fail_reason:
+          description: If transaction was rejected, this field will contain the description of an error
+          type: string | null
+          example: null
+        prover_run:
+          allOf:
+            - $ref: '#/components/schemas/prover_run'
+      xml:
+        name: Transaction
+    Tag:
+      type: object
+      properties:
+        id:
+          description: Tag ID
+          allOf:
+            - $ref: '#/components/schemas/Id'
+        name:
+          description: Tag name
+          type: string
+          minLength: 1
+      xml:
+        name: Tag
+    User:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        transaction:
+          oneOf:
+            - $ref: '#/components/schemas/Transaction'
+            - $ref: '#/components/schemas/Tag'
+        username:
+          description: User supplied username
+          type: string
+          minLength: 4
+          example: John78
+        firstName:
+          description: User first name
+          type: string
+          minLength: 1
+          example: John
+        lastName:
+          description: User last name
+          type: string
+          minLength: 1
+          example: Smith
+        email:
+          description: User email address
+          type: string
+          format: email
+          example: john.smith@example.com
+        password:
+          type: string
+          description: >-
+            User password, MUST contain a mix of upper and lower case letters,
+            as well as digits
+          format: password
+          minLength: 8
+          pattern: '/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/'
+          example: drowssaP123
+        phone:
+          description: User phone number in international format
+          type: string
+          pattern: '/^\+(?:[0-9]-?){6,14}[0-9]$/'
+          example: +1-202-555-0192
+        userStatus:
+          description: User status
+          type: integer
+          format: int32
+        addresses:
+          type: array
+          minItems: 0
+          maxLength: 10
+          items:
+            - type: object
+              properties:
+                city:
+                  type: string
+                  minLength: 0
+                country:
+                  type: string
+                  minLength: 0
+                street:
+                  description: includes build/apartment number
+                  type: string
+                  minLength: 0
+            - type: number
+          additionalItems:
+            type: string
+      xml:
+        name: User
+  securitySchemes:
+    transactionstore_auth:
+      description: |
+        Get access to data while protecting your account credentials.
+        OAuth2 is also a safer and more secure way to give you access.
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: 'http://transactionstore.swagger.io/api/oauth/dialog'
+          scopes:
+            'write:transactions': modify transactions in your account
+            'read:transactions': read your transactions
+    api_key:
+      description: >
+        For this sample, you can use the api key `special-key` to test the
+        authorization filters.
+      type: apiKey
+      name: api_key
+      in: header
+  examples:
+    Order:
+      value:
+        quantity: 1
+        shipDate: '2018-10-19T16:46:45Z'
+        status: placed
+        complete: false

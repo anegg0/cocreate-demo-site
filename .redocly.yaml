@@ -1,0 +1,19 @@
+
+organization: gr0wing
+
+extends:
+  - recommended
+
+apis:
+  zsynck@v2:
+    root: ./zsync-api-definition.json
+    rules:
+      no-ambiguous-paths: error
+
+features.openapi:
+  schemaExpansionLevel: 2
+  generateCodeSamples:
+    languages:
+      - lang: curl
+      - lang: Javascript
+      - lang: Json

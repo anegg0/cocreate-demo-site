@@ -31,7 +31,7 @@ const config = {
         // Plugin Options for loading OpenAPI files
         specs: [
           {
-            spec: 'openapi.yaml',
+            spec: 'api-definition.yaml',
             route: '/api/',
           },
         ],
@@ -85,6 +85,9 @@ const config = {
           {
             title: 'Docs',
             items: [
+              {
+                label: 'Zksync Improvement Strategy',
+                to: '/api', label: 'API Definition', position: 'left' },
               {
                 label: 'Zksync Improvement Strategy',
                 to: '/docs/zksync-api-docs-improvement-strategy',

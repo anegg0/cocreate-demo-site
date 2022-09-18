@@ -13,4 +13,4 @@ auth method?
 Postman collection
 put live code
 transition from rinkebi to goerli is not always mentionned
-
+English can be improved

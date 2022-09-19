@@ -2,8 +2,6 @@
 sidebar_position: 1
 ---
 
-# Proposed approach to improving the current state of Zksync's technical documentation
-
 ## Sksync's Tech Docs Improvement Approach
 
 ### Who reads Zksync's technical documentation?

@@ -119,7 +119,7 @@ tags:
     description: |
 
   - name: transaction_model
-    x-displayName: API Response Transaction Model
+    x-displayName: Transaction Model ( API Response )
     description: |
       <SchemaDefinition schemaRef="#/components/schemas/Transaction" />
 x-tagGroups:

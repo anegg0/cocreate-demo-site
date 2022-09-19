@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-## Sksync's Tech Docs Improvement Approach
+# Sksync's Tech Docs Improvement Approach
 
 ### Who reads Zksync's technical documentation?
 Let's posit that there are currently two main readership profiles for Zksync tech docs:
@@ -15,9 +15,13 @@ Let's posit that there are currently two main readership profiles for Zksync tec
 
 ## Assessment
 
+Here is a partial/subjective assessment Zksync's technical documentation:
+
 ### Pros
 
-Zksync technical documentation covers core concepts and makes it possible to quickly interact with Zksync.
+Zksync technical documentation: 
+- Covers core concepts.
+- Makes it possible to quickly interact with Zksync.
 For instance: the context, the endpoints, and the expected results are clearly explained overall, often in plain English.
  
 ### Cons
@@ -27,8 +31,11 @@ For instance: the context, the endpoints, and the expected results are clearly e
 - There could be more high-level explanation.
 
 ## Proposed approach
-The below proposal needs to be discussed with the team and weighted against a more accurate monitoring of documentation needs (using discord #support, partners' feedback, and Google Analytics).
+
+The below proposal needs to be discussed with the team and weighted against a systematic monitoring of Zksync's users' documentation needs (using discord #support, partners' feedback, and Google Analytics).
 
 - A high-level part similar to this "core concepts" page: https://developer.holochain.org/concepts/
 - An API framework (redocly, spotlight) so that the APIs can be covered extensively, with proposed code samples and Postman collections.
 - A full-stack, Zksync scaffolding (forked version of scaffold-eth, for instance) that serves as a reference for how-tos and enables developers to save time on configuration.
+
+Various documentation frameworks could be used, although [Docusaurus](https://docusaurus.io) would enable options such as live code (code blocks executed in-page).  

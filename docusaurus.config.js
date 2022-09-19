@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Zksync API documentation sample',
   tagline: 'Probably the shortest API documentation in the world',
-  url: 'https://docusaurus-2.netlify.app',
+  url: 'https://silly-belekoy-b83b1a.netlify.app',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',

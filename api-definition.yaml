@@ -5,17 +5,21 @@ servers:
 info:
   description: |
 
+
+    **Please note: The following page presents the same information twice: first in markdown, then generated from a yaml document.**
+
     # Introduction
 
-    This is a sample API definition of Zksync's V2 API, it covers a specific endpoint:
 
-    `/users/transactions?module={module_name}&address={address}`
+    This is a sample API definition of Zksync's V2 API., it covers a specific endpoint:
+
+    ```
+    /users/transactions?module={account}&address={address}
+    ```
 
       This endpoint enables  a common use-case: looking up transactions sent by a given address.
 
-      The path takes `{module_name}` as a `string` parameter to determine which module to interact with.
-
-      The path takes `{address}` as a `string` parameter   and returns transactions sent by this address.
+      The path takes `{module_name}` as a `string` parameter to determine which module to interact with, it also takes `{address}` as a `string` parameter   and returns transactions sent by this address.
 
       If you only need a subset of these transactions, the endpoint exposes the `startblock` and `endblock` parameters, which represent the period when transactions should be included. i.e. `startblock=30` and `endblock=60` will only return transactions sent by an address between block 30 and block 60.
 
@@ -31,17 +35,19 @@ info:
     |--------------|----------------|
     | `${ZKSYNC_SERVER_ADDRESS}/` | `/api/v2`   |
 
-    # Endpoints
+    ### Example URI
 
-    | Endpoint | Description |
-    |----------|-------------|
-    | /users/transactions?module={module_name} | Determines what module will be called |
-    | /users/transactions?module=account&address={address} | Returns the list of transactions performed by <br/> an address, with optional pagination |
-    |  &startblock={block_number} | First block from which to return transactions |
-    | &endblock={block_number} | Last block from which to return transactions |
-    | &page={page_displayed} | Sets the page to display |
-    | &offset={number_of_transactions} | Sets the number of transactions displayed per page |
-    | &sort={display_order} | Displays results in ascending or descending order |
+    ```bash
+    https://api.zksync.io/v2/users/transactions
+    ?module=account
+    &address=0xc679HDJH9HHJI098a3CC98sjskjjks
+    &startblock=5
+    &endblock=10
+    &page=1
+    &offset=5
+    &sort=desc
+    ```
+
 
     ### Request type
 
@@ -51,32 +57,18 @@ info:
 
     | Query string parameter |Data type | Optional|  Default| Description |
     |------------------------|----|-------|----------|------|
-    | module_name    | String    | Required | `account` | The string represents the addresses to check for the balance. |
-    | address    | String    | Required| `null` | Represents the addresses to check for the balance. |
-    | startblock | Integer   | Optional | `0`|  Block from which to retrieve transactions start |
-    | endblock   | Integer   | Optional | `Latest block` | Block where  transactions. |
-    | offset     | Integer   | Optional | `5` |The number of transactions displayed per page. |
-    | sort       | String    | Optional | `asc` |Sorts transactions by ascending (use `asc`) or descending order (use `desc`). |
-    | page       | Integer   | Optional | `1` |The integer page number if pagination is enabled. |
-
-    ### Responses
-
-    | Response code | Description                                                                                   |
-    |-----------|----------------|
-    | `200 OK`                    | The request has succeeded.                                                                    |
-    | `400 Bad Request`           | The request unsuccessful due to incorrect syntax.                    |
-    | `404 Not Found`             | The server could not find the requested resource.                                              |
-    | `500 Internal Server Error` | The server encountered an unexpected condition that prevented it from fulfilling the request. |
-    | `503 Service Unavailable`   | The server is not ready to handle the request.                                                |
-
-    ### Example URI
-
-    ```bash
-    https://api.zksync.io/v2/users/transactions\?module\=account\&address\=0xc679HDJH9HHJI098a3CC98sjskjjks\&startblock\=5\&endblock\=10\&page\=1\&offset\=5\&sort\=desc'
-    ```
+    | `module_name`    | String    | Required | `account` | The string represents the module to call. |
+    | `address`    | String    | Required| `null` | Represents the addresses to check for the balance. |
+    | `startblock` | Integer   | Optional | `0`|  First block from which to return transactions. |
+    | `endblock`   | Integer   | Optional | `Latest block` | Last block from which to return transactions. |
+    | `offset`     | Integer   | Optional | `5` |Sets the number of transactions displayed per page. |
+    | `sort`       | String    | Optional | `asc` |Sorts transactions by ascending (use `asc`) or descending order (use `desc`). |
+    | `page`       | Integer   | Optional | `1` |The integer page number if pagination is enabled. |
 
 
-    #### Response example
+
+
+    ### Response example
 
 
     If transactions sent by a given address exist, the endpoint will return a json object representing each transaction.
@@ -121,7 +113,7 @@ info:
   license:
     name: MIT
 tags:
-  - name: getTransactionsById
+  - name: getTransactionsByAddress
     description: |
 
   - name: transaction_model

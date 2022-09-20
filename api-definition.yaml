@@ -31,11 +31,12 @@ info:
     |--------------|----------------|
     | `${ZKSYNC_SERVER_ADDRESS}/` | `/api/v2`   |
 
-    # Endpoint
+    # Endpoints
+
     | Endpoint | Description |
     |----------|-------------|
     | /users/transactions?module={module_name} | Determines what module will be called |
-    | /users/transactions?module=account&address={address}` | Returns the list of transactions performed by <br/> an address, with optional pagination |
+    | /users/transactions?module=account&address={address} | Returns the list of transactions performed by <br/> an address, with optional pagination |
     |  &startblock={block_number} | First block from which to return transactions |
     | &endblock={block_number} | Last block from which to return transactions |
     | &page={page_displayed} | Sets the page to display |

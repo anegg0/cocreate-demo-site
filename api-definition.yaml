@@ -23,7 +23,7 @@ info:
 
       If you only need a subset of these transactions, the endpoint exposes the `startblock` and `endblock` parameters, which represent the period when transactions should be included. i.e. `startblock=30` and `endblock=60` will only return transactions sent by an address between block 30 and block 60.
 
-      You can optically control the output by setting the number of transactions displayed per page with  the `offset` param, sort the transactions by ascending and descending order (`asc` and `desc` parameters) and decide what page should be displayed with the `page` param.
+      You can optionally control the output by setting the number of transactions displayed per page with  the `offset` param, sort the output by ascending and descending order (`asc` and `desc` parameters) and decide what page should be displayed with the `page` param.
 
     # Authentication
 
@@ -33,7 +33,7 @@ info:
 
     | Host     | Base Path    |
     |--------------|----------------|
-    | `${ZKSYNC_SERVER_ADDRESS}/` | `/api/v2`   |
+    | `https://${ZKSYNC_SERVER_ADDRESS}` | `/api/v2`   |
 
     ### Example URI
 
@@ -113,8 +113,8 @@ info:
   license:
     name: MIT
 tags:
-  - name: getTransactionsByAddress
-    description: |
+  - name: Transactions
+    description: Sample reference for a single transaction-related call
 
   - name: transaction_model
     x-displayName: Transaction Model ( API Response )
@@ -123,7 +123,7 @@ tags:
 x-tagGroups:
   - name: Transaction management
     tags:
-      - getTransactionsByAddress
+      - Transactions
   - name: Models
     tags:
       - transaction_model
@@ -140,10 +140,10 @@ paths:
           default: en-AU
     get:
       tags:
-        - getTransactionsByAddress
+        - Transactions
       summary: Find transactions by address
       description: Returns a list of transactions sent by a given address
-      operationId: getTransactionsById
+      operationId: Transactions
       parameters:
         - name: Content-type
           in: header

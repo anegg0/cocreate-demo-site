@@ -11,7 +11,7 @@ info:
     # Introduction
 
 
-    This is a sample API definition of Zksync's V2 API., it covers a specific endpoint:
+    This is a sample API reference of Zksync's API V2, it covers a specific endpoint:
 
     ```
     /users/transactions?module={account}&address={address}
@@ -74,7 +74,7 @@ info:
     name: MIT
 tags:
   - name: Transactions
-    description: the following is generated from an openapi reference
+    description: the following has been generated from an openapi reference
 
   - name: transaction_model
     x-displayName: Transaction Model ( API Response )

@@ -6,7 +6,7 @@ info:
   description: |
 
 
-    **Please note: The following page presents the same information twice: first in markdown, then generated from a yaml document.**
+    **Please note: some of the data on this page is documented twice: in markdown to satisfy the requirements of the assignment (converting a table to markdown, specifying the request type), then from an openapi-generated document that was written ad hoc.**
 
     # Introduction
 
@@ -25,11 +25,11 @@ info:
 
       You can optionally control the output by setting the number of transactions displayed per page with  the `offset` param, sort the output by ascending and descending order (`asc` and `desc` parameters) and decide what page should be displayed with the `page` param.
 
-    # Authentication
+    ## Authentication
 
     The authentication scheme is undefined at this time.
 
-    # Base path
+    ## Base path
 
     | Host     | Base Path    |
     |--------------|----------------|
@@ -57,54 +57,14 @@ info:
 
     | Query string parameter |Data type | Optional|  Default| Description |
     |------------------------|----|-------|----------|------|
-    | `module_name`    | String    | Required | `account` | The string represents the module to call. |
-    | `address`    | String    | Required| `null` | Represents the addresses to check for the balance. |
+    | `module_name`    | String    | Required | `account` | Represents the module to call. |
+    | `address`    | String    | Required| `null` | Represents the addresses to check for transactions. |
     | `startblock` | Integer   | Optional | `0`|  First block from which to return transactions. |
     | `endblock`   | Integer   | Optional | `Latest block` | Last block from which to return transactions. |
     | `offset`     | Integer   | Optional | `5` |Sets the number of transactions displayed per page. |
     | `sort`       | String    | Optional | `asc` |Sorts transactions by ascending (use `asc`) or descending order (use `desc`). |
     | `page`       | Integer   | Optional | `1` |The integer page number if pagination is enabled. |
 
-
-
-
-    ### Response example
-
-
-    If transactions sent by a given address exist, the endpoint will return a json object representing each transaction.
-
-    ```json
-    [
-      {
-        "tx_hash": "1424388a45de738bae3175734bfdd8bb36abc8c31b2608018172574e8b7e38e2",
-        "block_number": 3072
-        "success": true,
-        "verified": true,
-        "fail_reason": null,
-        "prover_run": {
-          "id": 0,
-          "block_number": 3072,
-          "worker": "prover-76ccd5db5d-d959v",
-          "created_at": "2019-08-24T14:15:22Z",
-          "updated_at": "2020-08-24T14:15:22Z"
-        }
-      },
-      {
-        "tx_hash": "0x8f2674aa4ed5945f8a8f5ff20524e44520d87ce25079c2800d7de4076c122796",
-        "block_number": 3062,
-        "success": true,
-        "verified": true,
-        "fail_reason": null,
-        "prover_run": {
-          "id": 0,
-          "block_number": 3072,
-          "worker": "prover-76ccd5db5d-d959v",
-          "created_at": "2021-09-19T05:38:22Z",
-          "updated_at": "2022-09-19T05:38:22Z"
-        }
-      }
-    ]
-    ```
 
   version: 1.0.0
   title: "Zksync API v2"
@@ -114,7 +74,7 @@ info:
     name: MIT
 tags:
   - name: Transactions
-    description: Sample reference for a single transaction-related call
+    description: the following is generated from an openapi reference
 
   - name: transaction_model
     x-displayName: Transaction Model ( API Response )

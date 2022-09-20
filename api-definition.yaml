@@ -76,7 +76,7 @@ info:
     ```
 
 
-    ##### Response example
+    #### Response example
 
 
     If transactions sent by a given address exist, the endpoint will return a json object representing each transactions.

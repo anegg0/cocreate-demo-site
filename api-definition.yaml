@@ -13,9 +13,9 @@ info:
 
       This endpoint enables  a common use-case: looking up transactions sent by a given address.
 
-      The path take `{module_name}` as a `string` parameter to determine which module to interact with.
+      The path takes `{module_name}` as a `string` parameter to determine which module to interact with.
 
-      The path take `{address}` as a `string` parameter   and returns transactions sent by this address.
+      The path takes `{address}` as a `string` parameter   and returns transactions sent by this address.
 
       If you only need a subset of these transactions, the endpoint exposes the `startblock` and `endblock` parameters, which represent the period when transactions should be included. i.e. `startblock=30` and `endblock=60` will only return transactions sent by an address between block 30 and block 60.
 

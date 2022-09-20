@@ -6,7 +6,7 @@ info:
   description: |
 
 
-    **Please note: some of the data on this page is documented twice: in markdown to satisfy the requirements of the assignment (converting a table to markdown, specifying the request type), then from an openapi-generated document that was written ad hoc.**
+    **Please note: some of the data on this page is documented twice: used method and URL parameters. You will find it both in markdown to satisfy the requirements of the assignment (converting a table to markdown, specifying the request type), then in an openapi-generated document that was written for this assignment.**
 
     # Introduction
 
@@ -74,7 +74,7 @@ info:
     name: MIT
 tags:
   - name: Transactions
-    description: the following has been generated from an openapi reference
+    description: the following has been generated from an openapi definition file
 
   - name: transaction_model
     x-displayName: Transaction Model ( API Response )

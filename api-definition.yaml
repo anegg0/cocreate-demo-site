@@ -47,7 +47,6 @@ info:
 
     This endpoint accepts `GET` requests.
 
-
     ### URI Parameters
 
     | Query string parameter |Data type | Optional|  Default| Description |
@@ -70,17 +69,23 @@ info:
     | `500 Internal Server Error` | The server encountered an unexpected condition that prevented it from fulfilling the request. |
     | `503 Service Unavailable`   | The server is not ready to handle the request.                                                |
 
-    #### Return payload
+    ### Example URI
 
-    If transactions sent by a given address exist, the endpoint will return an json object representing each transactions.
+    ```bash
+    https://api.zksync.io/v2/users/transactions\?module\=account\&address\=0xc679HDJH9HHJI098a3CC98sjskjjks\&startblock\=5\&endblock\=10\&page\=1\&offset\=5\&sort\=desc'
+    ```
 
-    ##### Example return payload return
+
+    ##### Response example
+
+
+    If transactions sent by a given address exist, the endpoint will return a json object representing each transactions.
 
     ```json
     [
       {
         "tx_hash": "1424388a45de738bae3175734bfdd8bb36abc8c31b2608018172574e8b7e38e2",
-        "block_number": 3072,
+        "block_number": 3072
         "success": true,
         "verified": true,
         "fail_reason": null,

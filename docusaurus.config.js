@@ -59,7 +59,16 @@ const config = {
       }),
     ],
   ],
-
+  plugins: ['@docusaurus/theme-live-codeblock'],
+  themeConfig: {
+    liveCodeBlock: {
+      /**
+       * The position of the live playground, above or under the editor
+       * Possible values: "top" | "bottom"
+       */
+      playgroundPosition: 'bottom',
+    },
+  },
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({

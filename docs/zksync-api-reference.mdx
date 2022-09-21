@@ -1,0 +1,164 @@
+---
+sidebar_position: 1
+---
+
+# Zsync API Reference
+
+This document is a sample, it only covers a single endpoint of Zksync's API V2.
+
+## Transactions listing
+
+This endpoint enables  a common use-case: looking up transactions sent by a given address. 
+The path take `{address}` as a `string` parameter   and returns transactions sent by this address. 
+
+If you only need a subset of these transactions, the endpoint exposes the `startblock` and `endblock` parameters, which represent the period when transactions should be included.
+
+i.e.: `startblock=30` and `endblock=60` will only return transactions sent by an address between block 30 and block 60.
+
+You can optically control the output by setting the number of transactions displayed per page with  the `offset` param, sort the transactions by ascending and descending order (`asc` and `desc` parameters) and decide what page should be displayed with the `page` param. 
+ 
+### Base path
+
+| Host     | Base Path    |
+|--------------|----------------|
+| `${ZKSYNC_SERVER_ADDRESS}` | `/api/v2`   |
+
+### Endpoint
+
+| Endpoint   | Description    |
+|-------------------|----|
+| `/users/transactions?module=account&address={address}` |Returns the list of transactions performed by an address, with optional pagination |
+
+### Path Parameter
+
+| Path parameter | Description                                                       |
+|----------------|------------------------------------------|
+| {address}      | Account address to get transactions from |
+
+### Request type
+
+This endpoint accepts `GET` requests.
+
+### URI Parameters
+
+| Query string parameter | Data type | Optional | Default        | Description                                                                   |
+|------------------------|-----------|----------|----------------|-------------------------------------------------------------------------------|
+| `module_name`          | String    | Required | `account`      | Represents the module to call.                                                |
+| `address`              | String    | Required | `null`         | Represents the addresses to check for transactions.                           |
+| `startblock`           | Integer   | Optional | `0`            | First block from which to return transactions.                                |
+| `endblock`             | Integer   | Optional | `Latest block` | Last block from which to return transactions.                                 |
+| `offset`               | Integer   | Optional | `5`            | Sets the number of transactions displayed per page.                           |
+| `sort`                 | String    | Optional | `asc`          | Sorts transactions by ascending (use `asc`) or descending order (use `desc`). |
+| `page`                 | Integer   | Optional | `1`            | The integer page number if pagination is enabled.                             |
+
+### Responses
+
+| Response code               | Description                                                                                   |
+|-----------------------------|-----------------------------------------------------------------------------------------------|
+| 200 OK                    | The request has succeeded.                                                                    |
+| 400 Bad Request           | The request unsuccessful due to incorrect syntax.                    |
+| 404 Not Found             | The server could not find the requested resource.                                              |
+| 500 Internal Server Error | The server encountered an unexpected condition that prevented it from fulfilling the request. |
+| 503 Service Unavailable   | The server is not ready to handle the request.                                                |
+
+## Examples
+
+### Example URI
+
+```bash
+https://api.zksync.io/v2/users/transactions\?module\=account\&address\=0xc679HDJH9HHJI098a3CC98sjskjjks\&startblock\=0\&endblock\=100000\&page\=1\&offset\=5\&sort\=desc'
+ ```
+ 
+### Example Requests
+
+Any REST API-compliant package can be used to perform HTTP requests against Zksync's API V2, here are a couple query examples using `cURL` and `Javascript Fetch:  
+
+```md codetabs
+
+```bash label="Example cURL request"
+curl -XGET 
+-H 'module: account' 
+-H 'address: 0xc679HDJH9HHJI098a3CC98sjskjjks 
+-H 'startblock: 0' 
+-H 'endblock: 100000' 
+-H 'page: 1' 
+-H 'offset: 5' 
+-H 'sort: desc' 
+-H "Content-type: application/json" 
+'https://api.zksync.io/v2/users/transactions/' | json_pp 
+
+curl -XGET -H 'max_block: 1000' -H "Content-type: application/json" 'https://goerli-api.zksync.io/api/v0.1/blocks' | json_pp
+```js label="Example JS Fetch request"
+
+getData('https://api.zksync.io/v2/users/transactions\?module\=account\&address\=0xc679HDJH9HHJI098a3CC98sjskjjks\&startblock\=0\&endblock\=100000\&page\=1\&offset\=5\&sort\=desc');
+
+async function getData(url = '') {
+  await fetch(url, {
+    method: 'GET',
+    mode: 'cors',
+    cache: 'no-cache',
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+}
+
+getData('https://api.zksync.io/v2/users/transactions\?module\=account\&address\=0xc679HDJH9HHJI098a3CC98sjskjjks\&startblock\=0\&endblock\=100000\&page\=1\&offset\=5\&sort\=desc');
+
+```jsx live label="Example live JS Fetch"
+async function getData(url = '') {
+  await fetch(url, {
+    method: 'GET',
+    mode: 'cors',
+    cache: 'no-cache',
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+}
+
+```json label='Example Json response'
+[
+{
+  "tx_hash": "1424388a45de738bae3175734bfdd8bb36abc8c31b2608018172574e8b7e38e2",
+  "block_number": 3072,
+  "success": true,
+  "verified": true,
+  "fail_reason": null,
+  "prover_run": {
+    "id": 3091,
+    "block_number": 3072,
+    "worker": "prover-76ccd5db5d-d959v",
+    "created_at": "2020-11-11T04:18:40.950155Z",
+    "updated_at": "2020-11-11T04:19:33.761931Z"
+  }
+},
+{
+  "tx_hash": "e8b239b55804e58c2a55e2b567a9572811c19230d6a0d1f4a7840e7a0952b33d",
+  "block_number": 2817,
+  "success": true,
+  "verified": true,
+  "fail_reason": null,
+  "prover_run": {
+    "id": 2834,
+    "block_number": 2817,
+    "worker": "prover-76ccd5db5d",
+    "created_at": "2020-11-03T15:25:14.814835Z",
+    "updated_at": "2020-11-03T15:26:59.617458Z"
+  }
+}
+]
+
+    ```

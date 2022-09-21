@@ -5,11 +5,7 @@ servers:
 info:
   description: |
 
-
-    **Please note: some of the data on this page is documented twice: used method and URL parameters. You will find it both in markdown to satisfy the requirements of the assignment (converting a table to markdown, specifying the request type), then in an openapi-generated document that was written for this assignment.**
-
     # Introduction
-
 
     This is a sample API reference of Zksync's API V2, it covers a specific endpoint:
 
@@ -35,35 +31,6 @@ info:
     |--------------|----------------|
     | `https://${ZKSYNC_SERVER_ADDRESS}` | `/api/v2`   |
 
-    ### Example URI
-
-    ```bash
-    https://api.zksync.io/v2/users/transactions
-    ?module=account
-    &address=0xc679HDJH9HHJI098a3CC98sjskjjks
-    &startblock=5
-    &endblock=10
-    &page=1
-    &offset=5
-    &sort=desc
-    ```
-
-
-    ### Request type
-
-    This endpoint accepts `GET` requests.
-
-    ### URI Parameters
-
-    | Query string parameter |Data type | Optional|  Default| Description |
-    |------------------------|----|-------|----------|------|
-    | `module_name`    | String    | Required | `account` | Represents the module to call. |
-    | `address`    | String    | Required| `null` | Represents the addresses to check for transactions. |
-    | `startblock` | Integer   | Optional | `0`|  First block from which to return transactions. |
-    | `endblock`   | Integer   | Optional | `Latest block` | Last block from which to return transactions. |
-    | `offset`     | Integer   | Optional | `5` |Sets the number of transactions displayed per page. |
-    | `sort`       | String    | Optional | `asc` |Sorts transactions by ascending (use `asc`) or descending order (use `desc`). |
-    | `page`       | Integer   | Optional | `1` |The integer page number if pagination is enabled. |
 
 
   version: 1.0.0

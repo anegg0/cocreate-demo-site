@@ -88,8 +88,6 @@ curl -XGET
 -H "Content-type: application/json" 
 'https://api.zksync.io/v2/users/transactions/' | json_pp 
 
-curl -XGET -H 'max_block: 1000' -H "Content-type: application/json" 'https://goerli-api.zksync.io/api/v0.1/blocks' | json_pp
-
 ```js label="Example JS Fetch request"
 getData('https://api.zksync.io/v2/users/transactions\?module\=account\&address\=0xc679HDJH9HHJI098a3CC98sjskjjks\&startblock\=0\&endblock\=100000\&page\=1\&offset\=5\&sort\=desc');
 

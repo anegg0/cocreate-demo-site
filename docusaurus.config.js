@@ -50,6 +50,8 @@ const config = {
           remarkPlugins: [
             [require('docusaurus-remark-plugin-codetabs'), {
             }],
+            [require('@docusaurus/remark-plugin-npm2yarn'), {sync: true
+            }]
           ],
           sidebarPath: require.resolve('./sidebars.js'),
         },

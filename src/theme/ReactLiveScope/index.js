@@ -1,9 +1,12 @@
 import React from 'react';
+import CodeBlock from '@theme/CodeBlock';
 
 const ButtonExample = (props) => (
   <button
     {...props}
     style={{
+      backgroundColor: 'white',
+      color: 'black',
       border: 'solid red',
       borderRadius: 20,
       padding: 10,
@@ -17,6 +20,7 @@ const ButtonExample = (props) => (
 const ReactLiveScope = {
   React,
   ...React,
+  CodeBlock,
   ButtonExample,
 };
 

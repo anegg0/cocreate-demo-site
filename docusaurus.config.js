@@ -69,15 +69,8 @@ const config = {
   themeConfig: {
     colorMode: {
       defaultMode: 'light',
-      disableSwitch: false,
+      disableSwitch: true,
       respectPrefersColorScheme: false,
-    },
-    liveCodeBlock: {
-      /**
-       * The position of the live playground, above or under the editor
-       * Possible values: "top" | "bottom"
-       */
-      playgroundPosition: 'bottom',
     },
   },
   themeConfig:

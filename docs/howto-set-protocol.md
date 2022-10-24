@@ -4,19 +4,18 @@ sidebar_position: 1
 
 # Setting protocol minting for an NFT project
 
-deployCreateInstance 
-deployCreateInstance is the function for launching a Co:Create Instance. The function has the following parameters:
+## Prerequisites:
 
-name - The name of the Create Instance
-instanceAdmin - The admin address of the Create Instance
+- An NFT collection that has already been minted and is circulating.
+- You have visited our Tokenomics section and read up on the pre-launch decisions you need to make.
 
-```js lineNumbers
-function deployCreateInstance(
-    string name,
-    address instanceAdmin
-) external returns (ICreateInstance);
-```
-Each Create Instance will set the parameters for the following items prior to launching its own Instance Token: 
+To use **Co:Create** to its fullest potential, a project would go from launching their Create Instance all the way through turning over control of the DAO treasury to the community of Instance Token holders. 
+
+1- Deploy a Create Instance using the Co:Create Protocol Contract.
+
+2- Launch their Instance Token and distribute it to their NFT Collectors, Team, Investors, and Partners using the Create Instance contract.
+
+To do so, the project could complete the following steps:Each Create Instance will set the parameters for the following items prior to launching its own Instance Token: 
 
 ### Max Supply
 The total number of tokens that will ever be available (assuming a non-inflationary token). E.g. 1B Tokens

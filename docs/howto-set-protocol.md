@@ -4,6 +4,10 @@ sidebar_position: 1
 
 # Setting protocol minting for an NFT project
 
+
+
+## This post is WIP!
+
 ## Prerequisites:
 
 - An NFT collection that has already been minted and is circulating.

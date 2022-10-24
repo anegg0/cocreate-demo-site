@@ -115,8 +115,8 @@ const config = {
                 to: '/docs/cocreate-whitepaper-intro', label: 'CoCreate Whitepaper Summary for technical executives', position: 'left'
               },
               {
-                label: 'CoCreate Improvement Strategy',
-                to: '/docs/cocreate-api-docs-improvement-strategy',
+                label: 'How to set protocol minting',
+                to: '/docs/howto-set-protocol',
               },
             ],
           },

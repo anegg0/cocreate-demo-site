@@ -26,17 +26,17 @@ const FeatureList: FeatureItem[] = [
         ),
         url: '/api'
     },
-    {
-        title: 'Documentation improvement strategy',
-        Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
-        description: (
-            <>
-                Extend or customize your website layout by reusing React. Docusaurus can
-                be extended while reusing the same header and footer.
-            </>
-        ),
-        url: '/docs/cocreate-api-docs-improvement-strategy'
-    },
+    /* {
+*     title: 'Documentation improvement strategy',
+*     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+*     description: (
+*         <>
+*             Extend or customize your website layout by reusing React. Docusaurus can
+*             be extended while reusing the same header and footer.
+*         </>
+*     ),
+*     url: '/docs/cocreate-api-docs-improvement-strategy'
+* }, */
 ];
 
 function Feature({ title, url }: FeatureItem) {

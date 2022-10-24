@@ -69,7 +69,7 @@ const config = {
   themeConfig: {
     colorMode: {
       defaultMode: 'light',
-      disableSwitch: true,
+      disableSwitch: false,
       respectPrefersColorScheme: false,
     },
     liveCodeBlock: {

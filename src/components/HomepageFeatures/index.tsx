@@ -16,7 +16,7 @@ const FeatureList: FeatureItem[] = [
         description: (
             <>Structured view of API endpoints </>
         ),
-        url: '/docs/zksync-api-reference'
+        url: '/docs/cocreate-api-reference'
     },
     {
         title: 'API Definition',
@@ -35,7 +35,7 @@ const FeatureList: FeatureItem[] = [
                 be extended while reusing the same header and footer.
             </>
         ),
-        url: '/docs/zksync-api-docs-improvement-strategy'
+        url: '/docs/cocreate-api-docs-improvement-strategy'
     },
 ];
 

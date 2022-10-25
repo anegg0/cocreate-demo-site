@@ -51,7 +51,7 @@ Block rewards are denominated in the native token and accrue to the treasury acc
 The **Co:Create Protocol** allows NFT communities to benefit from each others' value creation
 
 The native token of the protocol, $CO$, operates similarly to the UNI token.
-It grants governance rights to the **Co:Create** Protocol and management of
+It grants governance rights in the **Co:Create** Protocol and management rights over
  the **Create** treasury.
 
 The protocol distributes governance of the instance to those who contribute most to it, in other words, those who set up successful instances of the Create Protocol (weighted by how early

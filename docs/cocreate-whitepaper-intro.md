@@ -54,7 +54,7 @@ The native token of the protocol, $CO$, operates similarly to the UNI token.
 It grants governance rights in the **Co:Create** Protocol and management rights over
  the **Create** treasury.
 
-The protocol distributes governance of the instance to those who contribute most to it, in other words, those who set up successful instances of the Create Protocol (weighted by how early
+The protocol distributes governance over the instance to those who contribute most to it, in other words, those who set up successful instances of the Create Protocol (weighted by how early
 they set up their instance).
 We do this by introducing a hub-and-spoke exchange. Each instance, rather
 than retaining 100% of the tokens they receive, retains most of the tokens, and
@@ -63,7 +63,7 @@ sends a small amount to the **Co:Create** treasury.
 In exchange, the **Co:Create** treasury will grant the **Create** instance treasury $CO$ tokens,
 equivalent in value to the token exchanged, minus a small protocol fee. 
 
-With this mechanic, the more active instances get more governance voice on the **Co:Create**
+With this mechanics, the more active instances get more governance voice on the **Co:Create**
 Protocol, and the **Co:Create** Protocol can bootstrap a diversified portfolio/treasury.
 
 
